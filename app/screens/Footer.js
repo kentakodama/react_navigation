@@ -2,23 +2,19 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Badge } from 'native-base';
 import { StackNavigator, TabNavigator} from 'react-navigation';
 
-export default class FooterTabsBadgeExample extends Component {
+export default class FooterTabsBadge extends Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container>
-        <Header />
-        <Content />
-        <Footer>
-          <FooterTab>
-            <Button badge vertical>
-              <Badge><Text>4</Text></Badge>
-              <Text style={{color: 'black'}}>Cart</Text>
-            </Button>
-            <Button vertical onPress={() => navigate('Cart')}>
-              <Text style={{color: 'black'}}>Check Out</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
+        <FooterTab>
+          <Button badge vertical>
+            <Text style={{color: 'black'}}>Cart</Text>
+          </Button>
+          <Button vertical onPress={() => navigate('Cart')}>
+            <Text style={{color: 'black'}}>Check Out</Text>
+          </Button>
+        </FooterTab>
       </Container>
     );
   }

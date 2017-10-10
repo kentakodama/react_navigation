@@ -39,11 +39,6 @@ class HomeScreen extends React.Component {
 
 class Cart extends React.Component {
 
-  static navigationOptions = {
-    title: 'Cart',
-    headerBackTitle: 'back',
-    headerBackTitleStyle: {color: 'blue', fontSize: 40}
-  };
   render() {
 
     const { goBack } = this.props.navigation;
@@ -52,7 +47,7 @@ class Cart extends React.Component {
       <View style={{flex: 1}}>
         <HeaderBanner style={{flex: 1}}/>
         <View style={{flex: .05, backgroundColor: 'orange', justifyContent: 'center'}}>
-          <Text style={{alignSelf: 'center'}}>Your Cart</Text>
+          <Text style={{alignSelf: 'center', color: 'white'}}>Your Cart</Text>
         </View>
         <TouchableOpacity onPress={() => goBack()}>
           <Text style={{fontSize: 22, top: 50}}>Back to Menu</Text>
@@ -67,11 +62,7 @@ class Cart extends React.Component {
 
 
 class CheckOut extends React.Component {
-  static navigationOptions = {
-    title: 'CheckOut',
-    headerStyle: { backgroundColor: 'red' },
-    headerTitleStyle: { color: 'white' }
-  };
+
   render() {
     const { goBack } = this.props.navigation;
     console.log(goBack);
@@ -79,7 +70,7 @@ class CheckOut extends React.Component {
       <View style={{flex: 1}}>
         <HeaderBanner style={{flex: 1}}/>
         <View style={{flex: .05, backgroundColor: 'orange', justifyContent: 'center'}}>
-          <Text style={{alignSelf: 'center'}}>Your Cart</Text>
+          <Text style={{alignSelf: 'center', color: 'white'}}>Confirmation</Text>
         </View>
         <TouchableOpacity onPress={() => goBack()}>
           <Text style={{fontSize: 22, top: 50}}>back to Menu</Text>
@@ -148,12 +139,12 @@ class SimpleApp extends React.Component {
         <View style={{backgroundColor: 'white', flex: 8}}>
           <Menu />
         </View>
-        <Container style={{flex: 1}}>
-            <TouchableOpacity badge vertical onPress={() => navigate('Cart')}>
-              <Text style={{color: 'black'}}>Cart</Text>
+        <Container style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+            <TouchableOpacity onPress={() => navigate('Cart')}>
+              <Text style={{color: 'black',  fontSize: 18}}>Your Cart</Text>
             </TouchableOpacity>
-            <TouchableOpacity vertical onPress={() => navigate('CheckOut')}>
-              <Text style={{color: 'black'}}>Check Out</Text>
+            <TouchableOpacity onPress={() => navigate('CheckOut')}>
+              <Text style={{color: 'black', fontSize: 18}}>Check Out</Text>
             </TouchableOpacity>
         </Container>
       </View>
@@ -162,6 +153,7 @@ class SimpleApp extends React.Component {
 }
 
 //this must be after simple app or wont work
+//top level navigator
 const AppNavigator = StackNavigator(
 
   {

@@ -7,33 +7,33 @@ import DrinksScreen from './screens/DrinkScreen.js';
 import FoodScreen from './screens/FoodScreen.js'
 
 
-
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'SnackAcademy',
-     headerStyle: { backgroundColor: 'red' },
-     headerTitleStyle: { color: 'white' }
-  };
-  render() {
-
-    const { navigate } = this.props.navigation;
-    return (
-      <View>
-        <Text>Welcome to the menu!</Text>
-          <View>
-            <Button
-              onPress={() => navigate('Drinks')}
-              title="Drinks"
-            />
-            <Button
-              onPress={() => navigate('Food')}
-              title="Food"
-            />
-        </View>
-      </View>
-    );
-  }
-}
+//
+// class HomeScreen extends React.Component {
+//   static navigationOptions = {
+//     title: 'SnackAcademy',
+//      headerStyle: { backgroundColor: 'red' },
+//      headerTitleStyle: { color: 'white' }
+//   };
+//   render() {
+//
+//     const { navigate } = this.props.navigation;
+//     return (
+//       <View>
+//         <Text>Welcome to the menu!</Text>
+//           <View>
+//             <Button
+//               onPress={() => navigate('Drinks')}
+//               title="Drinks"
+//             />
+//             <Button
+//               onPress={() => navigate('Food')}
+//               title="Food"
+//             />
+//         </View>
+//       </View>
+//     );
+//   }
+// }
 
 
 
@@ -41,61 +41,77 @@ class Cart extends React.Component {
 
   render() {
 
-    const { goBack } = this.props.navigation;
-    console.log(goBack);
+    const { goBack, navigate } = this.props.navigation;
+    let exampleCart = require('./images/cart.png');
     return (
       <View style={{flex: 1}}>
         <HeaderBanner style={{flex: 1}}/>
-        <View style={{flex: .05, backgroundColor: 'orange', justifyContent: 'center'}}>
+        <View style={{flex: .5, backgroundColor: 'orange', justifyContent: 'center'}}>
           <Text style={{alignSelf: 'center', color: 'white'}}>Your Cart</Text>
         </View>
-        <TouchableOpacity onPress={() => goBack()}>
-          <Text style={{fontSize: 22, top: 50}}>Back to Menu</Text>
-        </TouchableOpacity>
+        <Image style={{flex: 5, width: 400}} source={exampleCart}/>
+        <Container style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => navigate('Index')}>
+            <Text style={{fontSize: 22}}>Back to Menu</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('CheckOut')}>
+            <Text style={{fontSize: 22}}>Check Out</Text>
+          </TouchableOpacity>
+        </Container>
       </View>
     );
   }
 }
-
-
-
 
 
 class CheckOut extends React.Component {
 
   render() {
-    const { goBack } = this.props.navigation;
-    console.log(goBack);
+    const { goBack, navigate } = this.props.navigation;
+    let checkOutImage = require('./images/confirmation_screen.png');
     return (
       <View style={{flex: 1}}>
         <HeaderBanner style={{flex: 1}}/>
-        <View style={{flex: .05, backgroundColor: 'orange', justifyContent: 'center'}}>
-          <Text style={{alignSelf: 'center', color: 'white'}}>Confirmation</Text>
+        <View style={{flex: .5, backgroundColor: 'orange', justifyContent: 'center'}}>
+          <Text style={{alignSelf: 'center', color: 'white'}}>Confirm Order</Text>
         </View>
-        <TouchableOpacity onPress={() => goBack()}>
-          <Text style={{fontSize: 22, top: 50}}>back to Menu</Text>
-        </TouchableOpacity>
+        <Image style={{flex: 5, width: 400}} source={checkOutImage}/>
+        <Container style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => navigate('Cart')}>
+            <Text style={{fontSize: 22}}>View Cart</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigate('Confirmation')}>
+            <Text style={{fontSize: 22}}>Confirm Order</Text>
+          </TouchableOpacity>
+        </Container>
       </View>
     );
   }
 }
 
+//note menu
 class Confirmation extends React.Component {
-  static navigationOptions = {
-    title: 'Confirmation',
-    headerStyle: { backgroundColor: 'red' },
-    headerTitleStyle: { color: 'white' }
-  };
+
   render() {
-    let coffeePic = require('./images/coffee.jpg')
+    const { goBack, navigate } = this.props.navigation;
     return (
-      <View>
-        <Text>Thanks for ordering!</Text>
+      <View style={{flex: 1}}>
+        <HeaderBanner style={{flex: 1}}/>
+        <View style={{flex: .5, backgroundColor: 'orange', justifyContent: 'center'}}>
+          <Text style={{alignSelf: 'center', color: 'white'}}>Order Confirmed</Text>
+        </View>
+        <View style={{flex: 5}}>
+          <Text>Thanks for order! Please pick up your shit at 4:15</Text>
+        </View>
+        <Container style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
+          <TouchableOpacity onPress={() => navigate('Index')}>
+            <Text style={{fontSize: 22}}>Back to Menu</Text>
+          </TouchableOpacity>
+        </Container>
       </View>
     );
   }
 }
-
 
 
 
@@ -125,12 +141,9 @@ const Menu = TabNavigator({
 
 
 
-
 //if flexing, the way to change heights of header and footer is by changing the height of the component between them
 class SimpleApp extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -165,6 +178,9 @@ const AppNavigator = StackNavigator(
     },
     CheckOut: {
       screen: CheckOut
+    },
+    Confirmation: {
+      screen: Confirmation
     }
   },
   {
@@ -173,6 +189,20 @@ const AppNavigator = StackNavigator(
 
   }
 );
+
+const ActionBar = StackNavigator({
+  Index: {
+    screen: CheckOut
+  },
+  Confirmation: {
+    screen: Confirmation
+  }
+});
+
+
+
+
+
 
 
 class HeaderBanner extends React.Component {
@@ -186,10 +216,6 @@ class HeaderBanner extends React.Component {
 }
 
 
-const ActionBar = StackNavigator({
-  Cart: { screen: Cart },
-  CheckOut: { screen: CheckOut }
-});
 
 
 export default class App extends React.Component {

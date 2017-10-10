@@ -94,15 +94,14 @@ class Confirmation extends React.Component {
 
   render() {
     const { goBack, navigate } = this.props.navigation;
+    let orderConfirmed = require('./images/order_confirmed.png');
     return (
       <View style={{flex: 1}}>
         <HeaderBanner style={{flex: 1}}/>
         <View style={{flex: .5, backgroundColor: 'orange', justifyContent: 'center'}}>
           <Text style={{alignSelf: 'center', color: 'white'}}>Order Confirmed</Text>
         </View>
-        <View style={{flex: 5}}>
-          <Text>Thanks for order! Please pick up your shit at 4:15</Text>
-        </View>
+        <Image style={{flex: 5, width: 400}} source={orderConfirmed}/>
         <Container style={{flex: 1, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
           <TouchableOpacity onPress={() => navigate('Index')}>
             <Text style={{fontSize: 22}}>Back to Menu</Text>

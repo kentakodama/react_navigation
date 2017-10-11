@@ -7,35 +7,6 @@ import DrinksScreen from './screens/DrinkScreen.js';
 import FoodScreen from './screens/FoodScreen.js'
 
 
-//
-// class HomeScreen extends React.Component {
-//   static navigationOptions = {
-//     title: 'SnackAcademy',
-//      headerStyle: { backgroundColor: 'red' },
-//      headerTitleStyle: { color: 'white' }
-//   };
-//   render() {
-//
-//     const { navigate } = this.props.navigation;
-//     return (
-//       <View>
-//         <Text>Welcome to the menu!</Text>
-//           <View>
-//             <Button
-//               onPress={() => navigate('Drinks')}
-//               title="Drinks"
-//             />
-//             <Button
-//               onPress={() => navigate('Food')}
-//               title="Food"
-//             />
-//         </View>
-//       </View>
-//     );
-//   }
-// }
-
-
 
 class Cart extends React.Component {
 
